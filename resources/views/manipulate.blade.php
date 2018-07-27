@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <!doctype html>
 <html lang="en">
   <head>
@@ -77,10 +74,10 @@
     </style>
     <script>
       // getUserMedia only works over https in Chrome 47+, so we redirect to https. Also notify user if running from file.
-      // if (window.location.protocol == "file:") {
-      //   alert("You seem to be running this example directly from a file. Note that these examples only work when served from a server or localhost due to canvas cross-domain restrictions.");
-      // } else if (window.location.hostname !== "localhost" && window.location.protocol !== "https:"){
-      //   window.location.protocol = "https";
+      if (window.location.protocol == "file:") {
+        alert("You seem to be running this example directly from a file. Note that these examples only work when served from a server or localhost due to canvas cross-domain restrictions.");
+      } else if (window.location.hostname !== "localhost" && window.location.protocol !== "https:"){
+        window.location.protocol = "https";
       }
     </script>
     <script type="text/javascript">
@@ -89,25 +86,24 @@
       _gaq.push(['_setAccount', 'UA-32642923-1']);
       _gaq.push(['_trackPageview']);
 
-      // (function() {
-      //   var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      //   ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-      //   var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      // })();
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
 
     </script>
   </head>
   <body>
-    <script src="{{ asset('resources/clmtrackr-dev/examples/js/libs/dat.gui.min.js') }}"></script>
-    <!-- <script src="file:///C:/Users/janlo/Documents/GitHub/rlongFaceChangeWebApp/resources/clmtrackr-dev/examples/js/libs/dat.gui.min.js"></script> -->
-    <script src="../resources/clmtrackr-dev/examples/js/libs/utils.js"></script>
-    <script src="../resources/clmtrackr-dev/examples/js/libs/webgl-utils.js"></script>
-    <script src="../resources/clmtrackr-dev/build/clmtrackr.js"></script>
-    <script src="../resources/clmtrackr-dev/models/model_pca_20_svm.js"></script>
-    <script src="../resources/clmtrackr-dev/examples/js/libs/Stats.js"></script>
-    <script src="../resources/clmtrackr-dev/examples/js/face_deformer.js"></script>
-    <script src="../resources/clmtrackr-dev/examples/js/libs/jquery.min.js"></script>
-    <script src="../resources/clmtrackr-dev/examples/js/libs/poisson_new.js"></script>
+    <script src="../examples/js/libs/dat.gui.min.js"></script>
+    <script src="../examples/js/libs/utils.js"></script>
+    <script src="../examples/js/libs/webgl-utils.js"></script>
+    <script src="../build/clmtrackr.js"></script>
+    <script src="../models/model_pca_20_svm.js"></script>
+    <script src="../examples/js/libs/Stats.js"></script>
+    <script src="../examples/js/face_deformer.js"></script>
+    <script src="../examples/js/libs/jquery.min.js"></script>
+    <script src="../examples/js/libs/poisson_new.js"></script>
 
     <div id="content">
         <div id="container">
@@ -500,5 +496,4 @@
     </div>
   </body>
 </html>
-@endsection
 

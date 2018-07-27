@@ -24,11 +24,11 @@ class AdminForgotPasswordController extends Controller
     /**
      * Create a new controller instance.
      *
-     * @return void
+     * @return void 
      */
     public function __construct()
     {
-        $this->middleware('guest');
+        $this->middleware('guest:admin'); 
     }
         //define what broker to use
     protected function broker() {

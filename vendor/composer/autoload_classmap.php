@@ -56,6 +56,7 @@ return array(
     'CreateNosesTable' => $baseDir . '/database/migrations/2018_04_01_215325_create_noses_table.php',
     'CreatePasswordResetsTable' => $baseDir . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
     'CreateSavedlooksTable' => $baseDir . '/database/migrations/2018_04_01_215350_create_savedlooks_table.php',
+    'CreateTestimonialsTable' => $baseDir . '/database/migrations/2018_07_05_170215_create_testimonials_table.php',
     'CreateUsersTable' => $baseDir . '/database/migrations/2014_10_12_000000_create_users_table.php',
     'Cron\\AbstractField' => $vendorDir . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
     'Cron\\CronExpression' => $vendorDir . '/mtdowling/cron-expression/src/Cron/CronExpression.php',

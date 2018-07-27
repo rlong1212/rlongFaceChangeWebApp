@@ -333,6 +333,7 @@ class ComposerStaticInita7205a8771f16433a829dafedf825671
         'CreateNosesTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_01_215325_create_noses_table.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateSavedlooksTable' => __DIR__ . '/../..' . '/database/migrations/2018_04_01_215350_create_savedlooks_table.php',
+        'CreateTestimonialsTable' => __DIR__ . '/../..' . '/database/migrations/2018_07_05_170215_create_testimonials_table.php',
         'CreateUsersTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_000000_create_users_table.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
