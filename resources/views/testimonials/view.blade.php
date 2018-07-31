@@ -178,6 +178,17 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            #testimonial {
+                padding: 5px;
+                margin-top: 170px;
+                height: 450px;
+                width: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+
 
         </style>
     </head>
@@ -209,10 +220,41 @@
             @endif
         </nav>
 
-        <div class="tabcontent" id="Home">
-            <div class="homeTitle m-b-md">
-                    FaceChange
+        <div class="tabcontent" id="Testimonials">
+            <div class="title m-b-md">
+                    Testimonials
             </div>
-        </div>
+
+            <div class="container" id="testimonial">
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+            
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <td>User</td>
+                                    <td>Star</td>
+                                    <td>Comment</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php 
+                                $testimonial = App\Testimonial::all();
+                                ?>
+                                @foreach($testimonial as $t)
+                                <tr>
+                                    <td>{{ $t->user }}</td>
+                                    <td>{{ $t->star }}</td>
+                                    <td>{{ $t->comment }}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+            
+                    </div>
+                </div>
+            </div>
+
     </body>
 </html>

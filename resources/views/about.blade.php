@@ -209,10 +209,46 @@
             @endif
         </nav>
 
-        <div class="tabcontent" id="Home">
-            <div class="homeTitle m-b-md">
-                    FaceChange
+        <div class="tabcontent" id="About">
+            <div class="title m-b-md">
+                    About
             </div>
+
+            <div class="media">
+                <div class="media-left media-middle">
+                    <img class="media-object" src="eye.png">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">Our Mission</h4>
+                    <p>Here at FaceChange, we aim to provide you a more realistic view of your life-changing cosmetic procedures will turn out.</p>
+                    <p>We eliminate the unrealistic methods of photoshopping and free hand sketches, using our software to allow you to manipulate areas of your face in real-time and with a full 360 degree view.</p>
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-body">
+                    <h4 class="media-heading">Our Values</h4>
+                    <p>Our core value is to ensure you get the best service and quality experience possible, to gain your trust and respect.</p>
+                    <p>We give excellent customer service by ensuring your needs are met. We care about you and how your cosmetic surgery will boost your confidence. Everything we do is for you.</p>
+                </div>
+                <div class="media-right media-middle">
+                    <img class="media-object" src="ear.png">
+                </div>
+            </div>
+
+            <div class="media">
+                <div class="media-left media-middle">
+                    <img class="media-object" src="nose.png">
+                </div>
+                <div class="media-body">
+                    <h4 class="media-heading">What You Can Expect</h4>
+                    <p>Using our service, you can expect nothing but the highest professional standards of staff and software quality.</p>
+                    <p>You will recieve your own dedicated account on our website, where you can use our specialist software to create your new looks.</p>
+                    <p>You will be able to save your looks onto your profile for use in future consultations.</p>
+                </div>
+            </div>
+            <div id="referenceAbout">Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div>
+
         </div>
     </body>
 </html>

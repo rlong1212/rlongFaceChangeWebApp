@@ -21,6 +21,7 @@
                     <div class="links">
                         <a href="{{ url('/manipulate') }}">Start Face Manipulation</a>
                         <a href="{{ url('/savedlooks') }}">View Saved Looks</a>
+                        <a href="{{ route('testimonials.create') }}">New Testimonial</a>
                     </div>
                 </div>
 

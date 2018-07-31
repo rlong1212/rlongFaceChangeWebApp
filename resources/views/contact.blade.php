@@ -209,9 +209,31 @@
             @endif
         </nav>
 
-        <div class="tabcontent" id="Home">
-            <div class="homeTitle m-b-md">
-                    FaceChange
+      <div class="tabcontent" id="Contact">
+            <div class="title m-b-md">
+                    Contact
+            </div>
+            <div class="container" id="contact">
+                <form action="welcome.blade.php">
+                    <label for="fname">First Name</label>
+                    <input id="fname" type="text" name="firstname" placeholder="First name...">
+
+                    <label for="email">Email Address</label>
+                    <input id="email" type="text" name="email" placeholder="Email address...">
+
+                    <label for="subject">Subject</label>
+                    <select id="subject" name="subject">
+                        <option value="productinformation">Product Information Request</option>
+                        <option value="staffinformation">Staff Information Request</option>
+                        <option value="question">Question</option>
+                        <option value="other">Other</option>
+                    </select>
+
+                    <label for="query">Query</label>
+                    <textarea id="query" name="query" placeholder="Write something..." style="height: 200px"></textarea>
+
+                    <input type="submit" value="Submit">
+                </form>
             </div>
         </div>
     </body>

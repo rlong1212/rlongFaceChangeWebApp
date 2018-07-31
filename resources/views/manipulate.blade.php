@@ -1,8 +1,105 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <title>FaceChange</title>
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
     <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}"> 
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+    
+    
+    <link rel="stylesheet" href="{{URL::asset('css/parsley.css')}}">﻿
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link href="{{ asset('css/parsley.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+
+    <div id="app">
+        <nav class="navbar navbar-default navbar-static-top">
+            <div class="container">
+                <div class="navbar-header">
+
+                    <!-- Collapsed Hamburger -->
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse">
+                        <span class="sr-only">Toggle Navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+
+                    <!-- Branding Image -->
+                    <a class="navbar-brand" href="{{ url('/') }}">
+                        FaceChange
+                    </a>
+                </div>
+
+                <div class="collapse navbar-collapse" id="app-navbar-collapse">
+                    <!-- Left Side Of Navbar -->
+                    <ul class="nav navbar-nav">
+                        &nbsp;
+                    </ul>
+
+                    <!-- Right Side Of Navbar -->
+                    <ul class="nav navbar-nav navbar-right">
+                        <!-- Authentication Links -->
+                        @if (Auth::guest())
+                            <li><a href="{{ route('login') }}">Login</a></li>
+                            <li><a href="{{ route('register') }}">Register</a></li>
+                        @else
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu" role="menu">
+                                    <li>
+                                        <a href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                                            Logout
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                            {{ csrf_field() }}
+                                        </form>
+                                    </li>
+                                </ul>
+                            </li>
+                        @endif
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!--if store was a success, flash success message-->
+        @if (Session::has('success'))
+            <div class="alert alert-success" role="alert">
+                <strong>Success:</strong> {{ Session::get('success') }}
+            </div>
+        @endif
+
+        <!--if there are more than 0 errors, flash error message-->
+        @if (count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+                <strong>Errors:</strong>
+                <!--creating a list of errors-->
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
+        @yield('content')
+    </div>
+
+
+
     <style>
       @import url(https://fonts.googleapis.com/css?family=Lato:300italic,700italic,300,700);
 
@@ -94,13 +191,13 @@
     </script>
   </head>
   <body>
-    <script src="../clmtrackr-dev/examples/js/libs/dat.gui.min.js"></script>
-    <script src="../clmtrackr-dev/examples/js/libs/utils.js"></script>
-    <script src="../clmtrackr-dev/examples/js/libs/webgl-utils.js"></script>
-    <script src="../clmtrackr-dev/build/clmtrackr.js"></script>
-    <script src="../clmtrackr-dev/models/model_pca_20_svm.js"></script>
-    <script src="../clmtrackr-dev/examples/js/libs/Stats.js"></script>
-    <script src="../clmtrackr-dev/examples/js/face_deformer.js"></script>
+    <script src="../js/clmtrackr-dev/examples/js/libs/dat.gui.min.js"></script>
+    <script src="../js/clmtrackr-dev/examples/js/libs/utils.js"></script>
+    <script src="../js/clmtrackr-dev/examples/js/libs/webgl-utils.js"></script>
+    <script src="../js/clmtrackr-dev/build/clmtrackr.js"></script>
+    <script src="../js/clmtrackr-dev/models/model_pca_20_svm.js"></script>
+    <script src="../js/clmtrackr-dev/examples/js/libs/Stats.js"></script>
+    <script src="../js/clmtrackr-dev/examples/js/face_deformer.js"></script>
     <div id="content">
       <h2>FaceChange</h2>
       <div id="container">
@@ -110,29 +207,15 @@
         <canvas id="webgl" width="400" height="300"></canvas>
       </div>
       <br/>
-      <input class="btn" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+      <input class="btn btn-success btn-lg btn-block" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
       <select name="mask" id="selectmask">
         <option value="0">Average face</option>
         <option value="1">Mona Lisa</option>
-        <option value="2">Ironman</option>
-        <option value="3">Skull mask</option>
         <option value="4">Sean Connery</option>
         <option value="5">Audrey</option>
         <option value="6">Cage</option>
       </select>
       <div id="text">
-        <p>This is an example of face masking using the javascript library <a href="https://github.com/auduno/clmtrackr"><em>clmtrackr</em></a>.</p>
-        <p>Note that this example needs support for WebGL, and works best in Google Chrome.</p>
-        <div id="gum" class="nohide">
-          <p>To try it out:
-            <ol>
-              <li>allow the page to use your webcamera</li>
-              <li>make sure that your face is clearly visible in the video, and click start</li>
-              <li>keep your face still, and wait till model fits your face and mask is applied</li>
-              <li>try out different masks from the dropdown</li>
-            <ol>
-          </p>
-        </div>
         <div id="nogum" class="hide">
           <p>
             There was some problem trying to capture your webcamera, please check that your browser supports WebRTC. Using a fallback video instead. try it out:
@@ -144,14 +227,13 @@
           </p>
         </div>
       </div>
-      <a href="https://github.com/auduno/clmtrackr"><img style="position: absolute; top: 0; left: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_left_green_007200.png" alt="Fork me on GitHub"></a>
-      <img id="average" class="masks" src="../clmtrackr-dev/examples/media/average.png"></img>
-      <img id="monalisa" class="masks" src="../clmtrackr-dev/examples/media/joconde.jpg"></img>
-      <img id="ironman" class="masks" src="../clmtrackr-dev/examples/media/ironman.jpg"></img>
-      <img id="sean" class="masks" src="../clmtrackr-dev/examples/media/SeanConnery.jpg"></img>
-      <img id="skull" class="masks" src="../clmtrackr-dev/examples/media/skullmask.jpg"></img>
-      <img id="audrey" class="masks" src="../clmtrackr-dev/examples/media/audrey.jpg"></img>
-      <img id="cage2" class="masks" src="../clmtrackr-dev/examples/media/cage.jpg"></img>
+      <img id="average" class="masks" src="../js/clmtrackr-dev/examples/media/average.png"></img>
+      <img id="monalisa" class="masks" src="../js/clmtrackr-dev/examples/media/joconde.jpg"></img>
+      <img id="ironman" class="masks" src="../js/clmtrackr-dev/examples/media/ironman.jpg"></img>
+      <img id="sean" class="masks" src="../js/clmtrackr-dev/examples/media/SeanConnery.jpg"></img>
+      <img id="skull" class="masks" src="../js/clmtrackr-dev/examples/media/skullmask.jpg"></img>
+      <img id="audrey" class="masks" src="../js/clmtrackr-dev/examples/media/audrey.jpg"></img>
+      <img id="cage2" class="masks" src="../js/clmtrackr-dev/examples/media/cage.jpg"></img>
       <script>
         var vid = document.getElementById('videoel');
         var vid_width = vid.width;
@@ -164,7 +246,7 @@
 
         function enablestart() {
           var startbutton = document.getElementById('startbutton');
-          startbutton.value = "start";
+          startbutton.value = "Start";
           startbutton.disabled = null;
         }
 
@@ -340,5 +422,13 @@
 
       </script>
     </div>
-  </body>
+    <!-- Scripts -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="{{ asset('js/parsley.min.js') }}"></script>
+    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('js/clmtrackr.js') }}"></script>
+</body>
 </html>

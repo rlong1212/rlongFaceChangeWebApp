@@ -17,10 +17,17 @@ Route::get('/', function () {
 Route::get('/about', function() {
 	return view('about');
 });
-Route::get('/testimonials', function() {
-	return view('testimonials');
+Route::get('/contact', function() {
+	return view('contact');
 });
-
+Route::get('/gallery.view', function() {
+	return view('gallery.view');
+});
+Route::get('/testimonials.view', function() {
+	return view('testimonials.view');
+});
+Route::resource('testimonials', 'TestimonialController');
+Route::resource('gallery', 'GalleryController');
 
 Auth::routes();
 Route::resource('users', 'UserController');
@@ -30,6 +37,10 @@ Route::resource('admins', 'AdminController');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/manipulate', 'ManipulateController@index');
 Route::get('/savedlooks', 'SavedLooksController@index');
+Route::get('/addTestimonial', 'TestimonialController@index')->name('testimonial.add');
+Route::post('/addTestimonial', 'TestimonialController@store')->name('testimonial.store');
+Route::get('testimonials.view', 'TestimonialController@view')->name('testimonials.view');
+Route::get('gallery.view', 'GalleryController@view')->name('gallery.view');
 
 //admin routes
 //login

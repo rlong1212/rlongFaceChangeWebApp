@@ -194,7 +194,7 @@
                 <a href="{{ url('/') }}" class="link">Home</a>
                 <a href="{{ url('/about') }}"class="link">About</a>
                 <a href="{{ route('testimonials.view') }}"class="link">Testimonials</a>
-                <a href="{{ route('gallery.view') }}"class="link">Gallery</a>
+                <a href="{{ url('/gallery') }}"class="link">Gallery</a>
                 <a href="{{ url('/contact') }}"class="link">Contact</a>
             </div>
              @if (Route::has('login'))
@@ -209,10 +209,40 @@
             @endif
         </nav>
 
-        <div class="tabcontent" id="Home">
-            <div class="homeTitle m-b-md">
-                    FaceChange
+        <div class="tabcontent" id="Testimonials">
+            <div class="title m-b-md">
+                    Testimonials
             </div>
+
+                <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <td>User</td>
+                        <td>Star</td>
+                        <td>Comment</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php 
+                    $testimonial = App\Testimonial::all();
+                     ?>
+                     @foreach($testimonial as $t)
+                     <tr>
+                        <td>{{ $t->user }}</td>
+                        <td>{{ $t->star }}</td>
+                        <td>{{ $t->comment }}</td>
+                     </tr>
+                     @endforeach
+                </tbody>
+            </table>
+            <a href="{{ route('users.create') }}" class="btn btn-lg btn-success">Create New User</a>
         </div>
+    </div>
+
+        </div>
+
     </body>
 </html>

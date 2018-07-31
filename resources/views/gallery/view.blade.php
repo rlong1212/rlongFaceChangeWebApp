@@ -178,6 +178,17 @@
                 text-decoration: none;
                 text-transform: uppercase;
             }
+            #testimonial {
+                padding: 5px;
+                margin-top: 170px;
+                height: 450px;
+                width: auto;
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                padding-left: 20px;
+                padding-right: 20px;
+
 
         </style>
     </head>
@@ -209,9 +220,27 @@
             @endif
         </nav>
 
-        <div class="tabcontent" id="Home">
-            <div class="homeTitle m-b-md">
-                    FaceChange
+        <div class="tabcontent" id="Testimonials">
+            <div class="title m-b-md">
+                    Gallery
+            </div>
+
+            <div class="container" id="testimonial">
+
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div id="imageHolder">
+                            <?php
+                            $image = App\Gallery::all();
+                            ?>
+                            @foreach($image as $i)
+                            
+                            <img src="{{ $i->imgsrc }}">
+                            
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </body>
