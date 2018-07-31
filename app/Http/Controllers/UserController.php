@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('user');
+        return view('viewEditUsers');
     }
 
     /**
@@ -68,7 +68,7 @@ class UserController extends Controller
         //flash message to tell user has been successfully added to database
         Session::flash('success', 'User successfully added!');
         //redirect to create new user page
-        return redirect()->route('users.show', $user->id);
+        return redirect()->route('users.show', $user->id); 
     }
 
     /**
@@ -92,7 +92,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        //find user in database
+        $user = User::find($id);
+        //return view of user
+        return view('users.edit')->withUser($user);
     }
 
     /**
@@ -104,7 +107,19 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validate inputted data
+        $this->validate($request, array(
+            'name' => 'required|max:50',
+            'email' => 'required|email'
+        ));
+        //save into database
+        $user = User::find($id);
+        $user->name = $request->input('name');
+        $user->email = $request->input('email');
+        $user->save();
+        //redirect and flash success
+        Session::flash('success', 'User details updated successfully!');
+        return redirect()->route('users.show', $user->$id);
     }
 
     /**
@@ -115,6 +130,13 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //find user in database
+        $user = User::find($id);
+        //delete method
+        $user->delete();
+        //flash message success
+        Session::flash('success', 'User successfully deleted!');
+        //redirect to see users
+        return redirect()->route('admin.users');
     }
 }

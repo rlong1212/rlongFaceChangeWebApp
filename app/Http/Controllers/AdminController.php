@@ -10,11 +10,11 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\View;
-use App\Http\Controllers\Session;
+use Session;
 use Hash;
 
 class AdminController extends Controller
-{
+{ 
     public function __construct()
     {
         $this->middleware('auth:admin');
@@ -64,8 +64,10 @@ class AdminController extends Controller
         $admin->password = Hash::make($request->password);
         //save the new added data to the object to the database
         $admin->save(); 
-        //redirect to create new user page
-        return redirect()->route('admins.create');
+        //flash message to tell admin has been successfully added to database
+        Session::flash('success', 'Admin successfully added!');
+        //redirect to create new admin page
+        return redirect()->route('admins.show', $admin->id);
     }
 
     /**
@@ -77,6 +79,8 @@ class AdminController extends Controller
     public function show($id)
     {
         //to allow user to view /edit etc their created user
+        $admin = Admin::find($id);
+        return view('admins.show')->withAdmin($admin);
     }
 
     /**
@@ -87,7 +91,8 @@ class AdminController extends Controller
      */
     public function edit($id)
     {
-        //
+        $admin = Admin::find($id);
+        return view('admins.edit')->withAdmin($admin);
     }
 
     /**
@@ -99,7 +104,19 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        //validate inputted data
+        $this->validate($request, array(
+            'name' => 'required|max:50',
+            'email' => 'required|email'
+        ));
+        //save into database
+        $admin = Admin::find($id);
+        $admin->name = $request->input('name');
+        $admin->email = $request->input('email');
+        $admin->save();
+        //redirect and flash success
+        Session::flash('success', 'Admin details updated successfully!');
+        return redirect()->route('admin.admins', $admin->$id);
     }
 
     /**
@@ -110,6 +127,9 @@ class AdminController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $admin = Admin::find($id);
+        $admin->delete();
+        Session::flash('success', 'Admin successfully deleted!');
+        return redirect()->route('admin.admins');
     }
 } 

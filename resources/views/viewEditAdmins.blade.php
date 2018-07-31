@@ -31,24 +31,13 @@
     				 	<td>{{ $a->id }}</td>
     				 	<td>{{ $a->name }}</td>
     				 	<td>{{ $a->email }}</td>
-                        <td><a href="{{ route('admins.edit', $a->id) }}" class="btn btn-warning">Edit</a> <a href="{{ route('admins.destroy', $a->id) }}" class="btn btn-danger">Delete</a></td>
+                        <td><a href="{{ route('admins.show', $a->id) }}" class="btn btn-default">View</a>
     				 </tr>
     				 @endforeach
     			</tbody>
     		</table>
+            <a href="{{ route('admins.create') }}" class="btn btn-lg btn-success">Create New Admin</a>   <a class="btn btn-lg btn-default" href="{{ route('admin.dashboard') }}">Back</a>
     	</div>
     </div>
-
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="content">
-                        <a href="{{ route('admins.create') }}" class="btn btn-lg btn-success">Create New Admin</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    
-
 </div>
 @endsection

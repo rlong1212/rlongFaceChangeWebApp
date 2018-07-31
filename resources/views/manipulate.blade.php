@@ -167,6 +167,16 @@
       .nohide {
         display : block;
       }
+      #box {
+        width: 400px;
+        height: 300px;
+        border-style: solid;
+        border-width: .5px;
+      }
+      canvas {
+        max-width: 100%;
+        max-height: 100%;
+      }
     </style>
     <script>
       // getUserMedia only works over https in Chrome 47+, so we redirect to https. Also notify user if running from file.
@@ -207,7 +217,6 @@
         <canvas id="webgl" width="400" height="300"></canvas>
       </div>
       <br/>
-      <input class="btn btn-success btn-lg btn-block" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
       <select name="mask" id="selectmask">
         <option value="0">Average face</option>
         <option value="1">Mona Lisa</option>
@@ -215,6 +224,8 @@
         <option value="5">Audrey</option>
         <option value="6">Cage</option>
       </select>
+      <input class="btn btn-success btn-lg btn-block" type="button" value="wait, loading video" disabled="disabled" onclick="startVideo()" id="startbutton"></input>
+      
       <div id="text">
         <div id="nogum" class="hide">
           <p>
@@ -421,6 +432,22 @@
         }, false);
 
       </script>
+      
+      <!-- <script type="text/javascript">
+        //function to get screenshot of saved look
+        $(document).ready(function getScreenshot() {
+          html2canvas($(#videoel), {
+            onrendered: function(canvas) {
+              $('#box').html("");
+              $('#box').append(canvas);
+            });
+          });
+        }
+      </script> -->
+
+      <button id="saveBtn" class="btn btn-success btn-lg">Save Look</button>
+      <div id="box"></div>
+
     </div>
     <!-- Scripts -->
     <script src="js/jquery-3.3.1.min.js"></script>
@@ -430,5 +457,7 @@
     <script src="{{ asset('js/parsley.min.js') }}"></script>
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('js/clmtrackr.js') }}"></script>
+    <script src="{{ asset('js/html2canvas.js') }}"></script>
+    <script src="{{ asset('js/getsavedlook.js') }}"></script>
 </body>
 </html>

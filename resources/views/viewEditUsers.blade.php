@@ -31,12 +31,12 @@
     				 	<td>{{ $u->id }}</td>
     				 	<td>{{ $u->name }}</td>
     				 	<td>{{ $u->email }}</td>
-                        <td><a href="{{ route('users.edit', $u->id) }}" class="btn btn-warning">Edit</a> <a href="{{ route('users.destroy', $u->id) }}" class="btn btn-danger">Delete</a></td>
+                        <td><a href="{{ route('users.show', $u->id) }}" class="btn btn-default">View</a>
     				 </tr>
     				 @endforeach
     			</tbody>
     		</table>
-            <a href="{{ route('users.create') }}" class="btn btn-lg btn-success">Create New User</a>
+            <a href="{{ route('users.create') }}" class="btn btn-lg btn-success">Create New User</a>   <a class="btn btn-lg btn-default" href="{{ route('admin.dashboard') }}">Back</a>
     	</div>
     </div>
 </div>

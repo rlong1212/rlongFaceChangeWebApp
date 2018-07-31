@@ -24,7 +24,7 @@ Route::get('/gallery.view', function() {
 	return view('gallery.view');
 });
 Route::get('/testimonials.view', function() {
-	return view('testimonials.view');
+	return view('testimonials.view'); 
 });
 Route::resource('testimonials', 'TestimonialController');
 Route::resource('gallery', 'GalleryController');
@@ -54,4 +54,7 @@ Route::post('/admin/password/reset', 'Auth\AdminResetPasswordController@reset');
 Route::get('/admin/password/reset/{token}' , 'Auth\AdminResetPasswordController@showResetForm')->name('admin.password.reset');
 //admin activities
 Route::get('/admin/viewEditUsers', 'Auth\AdminViewEditUsersController@index')->name('admin.users');
+//Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/viewEditAdmins', 'Auth\AdminViewEditAdminsController@index')->name('admin.admins');
+// Route::get('users.show', 'UserController@show')->name('users.show');
+// Route::get('admins.show', 'AdminController@show')->name('admins.show');

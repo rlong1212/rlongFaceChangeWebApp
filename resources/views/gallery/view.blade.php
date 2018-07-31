@@ -87,6 +87,15 @@
                 margin-right: -50%;
                 transform: translate(-50%, -50%);
             }
+            .imgSlides {
+                margin-right: auto;
+                margin-left: auto;         
+            }
+            .btnSlides {
+                width: 70px;  
+                margin-right: auto;
+                margin-left: auto;       
+            }
 
             .links > a {
                 color: rgb(7,91,162);
@@ -188,7 +197,7 @@
                 margin-right: auto;
                 padding-left: 20px;
                 padding-right: 20px;
-
+            }
 
         </style>
     </head>
@@ -235,13 +244,36 @@
                             ?>
                             @foreach($image as $i)
                             
-                            <img src="{{ $i->imgsrc }}">
+                                <img class="imgSlides" src="{{ $i->imgsrc }}">
                             
                             @endforeach
+                            <div class="btnSlides">
+                                <button class="btn btn-display-left" onclick="plusDivs(-1)">&#10094</button>
+                                <button class="btn btn-display-right" onclick="plusDivs(+1)">&#10095</button>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <script>
+                var slideIndex = 1;
+                showDivs(slideIndex);
+
+                function plusDivs(n) {
+                    showDivs(slideIndex += n);
+                }
+
+                function showDivs(n) {
+                    var i;
+                    var x = document.getElementsByClassName("imgSlides");
+                    if (n > x.length) {slideIndex = 1}    
+                    if (n < 1) {slideIndex = x.length}
+                    for (i = 0; i < x.length; i++) {
+                        x[i].style.display = "none";  
+                    }
+                    x[slideIndex-1].style.display = "block";
+                }
+            </script>
         </div>
     </body>
 </html>
